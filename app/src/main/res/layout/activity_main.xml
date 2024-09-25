@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:layout_margin="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to PizzaHut"
+        android:letterSpacing="0.02"
+        android:textColor="@color/OrangeRed"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/styledTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We sell delicious pizzas. We sell delicious pizzas\nwe sell delicious pizzas."
+        android:fontFamily="sans-serif"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:letterSpacing="0.02"
+        android:textColor="#3c4043"
+        android:paddingBottom="4dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="3dp"
+        android:gravity="end"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veg only"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/LimeGreen"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textFontWeight="500"
+            />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:id="@+id/veg_only"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your PizzA"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="#3c4043"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_arrow_forward_24"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:weightSum="7"
+            android:layout_marginBottom="3dp"
+            android:visibility="visible"
+            android:id="@+id/pizza1_layout"
+            >
+
+            <CheckBox
+                android:id="@+id/checkbox1"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Margherita pizza"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="12sp"
+                android:layout_marginRight="60dp"
+                android:id="@+id/pizza1_name"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="300 Tk"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="14sp"
+                android:layout_marginRight="90dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" -- "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/minus_1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 0 "
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.02"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" + "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/plus_1"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginBottom="3dp"
+            android:visibility="visible"
+            android:id="@+id/pizza2_layout"
+            >
+
+            <CheckBox
+                android:id="@+id/checkbox2"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mushroom pizza"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="12sp"
+                android:layout_marginRight="60dp"
+                android:id="@+id/pizza2_name"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="200 Tk"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="14sp"
+                android:layout_marginRight="90dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" -- "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/minus_2"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 0 "
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.02"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_2"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" + "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/plus_2"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginBottom="3dp"
+            android:visibility="visible"
+            android:id="@+id/pizza3_layout"
+            >
+
+            <CheckBox
+                android:id="@+id/checkbox3"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Chicken pizza"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="12sp"
+                android:layout_marginRight="60dp"
+                android:id="@+id/pizza3_name"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="300 Tk"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="14sp"
+                android:layout_marginRight="90dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" -- "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/minus_3"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 0 "
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.02"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_3"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" + "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/plus_3"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginBottom="3dp"
+            android:visibility="visible"
+            android:id="@+id/pizza4_layout"
+            >
+
+            <CheckBox
+                android:id="@+id/checkbox4"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bassil pizza"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="12sp"
+                android:layout_marginRight="60dp"
+                android:id="@+id/pizza4_name"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="100 Tk"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.02"
+                android:textColor="@color/black"
+                android:layout_weight="2"
+                android:textSize="14sp"
+                android:layout_marginRight="90dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" -- "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/minus_4"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 0 "
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.02"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_4"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" + "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_corner_box"
+                    android:textSize="14sp"
+                    android:id="@+id/plus_4"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:weightSum="6">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Toppings "
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.03"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="2"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/top1"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Extra Cheese"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.03"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/top2"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mushroom"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.03"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/top3"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tomato"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.03"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                >
+
+                <CheckBox
+                    android:id="@+id/top4"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Onion"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.03"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Size "
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.03"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_group"
+                android:padding="4dp">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Small"
+                    android:layout_marginBottom="3dp"/>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Medium"
+                    android:layout_marginBottom="3dp"/>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Large"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spice level"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.03"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="6dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="3dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="plain"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hot"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Superspicy"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="32dp"
+            android:src="@drawable/spicy"
+            />
+
+    </LinearLayout>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/rounded_corner_box"
+        android:id="@+id/seek_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:padding="3dp"
+        android:weightSum="5"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_add_location_24"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Select Location"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:paddingTop="3dp"
+            android:textColor="@color/black"
+            android:layout_weight="3.5"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_corner_box"
+            android:layout_weight="1"
+            >
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/location_spinner"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="6dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add cutlery"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.03"
+            android:textColor="@color/black"
+            android:textFontWeight="500"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="3.7"
+            />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:id="@+id/cutlery"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_corner_box"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:weightSum="4"
+        android:id="@+id/cupoun"
+        android:padding="6dp"
+        android:backgroundTint="@color/Yellow"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Add  Coupon"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3.3"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=" + "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"
+            android:layout_weight="0.7"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate Pizza"
+            android:layout_gravity="start"
+            android:textColor="@color/black"
+            app:backgroundTint="@null"
+            android:background="@drawable/rounded_corner_box"
+            android:backgroundTint="@color/OrangeRed"
+            android:layout_marginRight="30dp"
+            android:layout_weight="0.7"/>
+
+        <Button
+            android:id="@+id/btn_confirm_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm Order"
+            android:layout_gravity="end"
+            android:textColor="@color/black"
+            app:backgroundTint="@null"
+            android:background="@drawable/rounded_corner_box"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/OrangeRed"
+            android:layout_weight="0.7"/>
+
+    </LinearLayout>
+
+</LinearLayout>

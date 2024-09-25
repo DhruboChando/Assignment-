@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RatePizza"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/Yellow">
+
+    <TextView
+        android:id="@+id/rating_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="24sp"
+        android:textColor="@color/OrangeRed"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="Rate the pizza:" />
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1.0"
+        android:rating="0"
+        android:isIndicator="false"/>
+
+    <TextView
+        android:id="@+id/selected_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your rating: 0"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/OrangeRed"
+        android:textStyle="bold"/>
+
+</LinearLayout>
