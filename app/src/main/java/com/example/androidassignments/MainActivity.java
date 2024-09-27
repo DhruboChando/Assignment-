@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -156,11 +157,16 @@ public class MainActivity extends AppCompatActivity {
         m4.setOnClickListener(v -> decreaseQuantity(pizza4.getText().toString(), check4.isChecked(), tv4, 4));
 
         // Pizza size selection
-        pizza_size.setOnCheckedChangeListener((group, checkedId) -> {
-            RadioButton selectedRadioButton = findViewById(checkedId);
-            size = selectedRadioButton.getText().toString();
-            Toast.makeText(getApplicationContext(), "Selected Size: " + size, Toast.LENGTH_SHORT).show();
-        });
+        RadioGroup pizza_size = findViewById(R.id.radio_group);
+        int selectedId = pizza_size.getCheckedRadioButtonId(); // This will return -1 if no selection is made
+        if (selectedId != -1) {
+            RadioButton selectedRadioButton = findViewById(selectedId);
+            String selectedSize = selectedRadioButton.getText().toString();
+            // Use selectedSize in your logic
+        } else {
+            Log.e("MainActivity", "No radio button selected!");
+            // Handle no selection case here
+        }
 
         // Seek bar for spice level
         spice_level.setMax(5);
@@ -264,39 +270,67 @@ public class MainActivity extends AppCompatActivity {
 
         final int total_price = totalPrice;
 
-        // Format and show the final price in the confirmation dialog
-        builder.setMessage("Your total order price is " + totalPrice + " TK.\nAre you sure you want to confirm your order?")
+        //confirm dialog
+        builder.setMessage("Your total order price is " + total_price + " TK.\nAre you sure you want to confirm your order?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    builder.setTitle("Payment")
-                            .setMessage("Send " + total_price + " TK to Pizza Hut").setCancelable(false)
-                            .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
 
-                                    check1.setChecked(false);
-                                    check2.setChecked(false);
-                                    check3.setChecked(false);
-                                    check4.setChecked(false);
+                    //payment dialog after the first confirmation
+                    AlertDialog.Builder paymentDialog = new AlertDialog.Builder(this);
+                    paymentDialog.setTitle("Payment")
+                            .setMessage("Send " + total_price + " TK to Pizza Hut")
+                            .setCancelable(false)
+                            .setPositiveButton("Confirm", (paymentDialogInterface, which) -> {
+                                paymentDialogInterface.cancel();
 
-                                    top1.setChecked(false);
-                                    top2.setChecked(false);
-                                    top3.setChecked(false);
-                                    top4.setChecked(false);
+                                //resetting the checkboxes, radio buttons
+                                check1.setChecked(false);
+                                check2.setChecked(false);
+                                check3.setChecked(false);
+                                check4.setChecked(false);
 
-                                    pizza_size.clearCheck();
+                                top1.setChecked(false);
+                                top2.setChecked(false);
+                                top3.setChecked(false);
+                                top4.setChecked(false);
 
-                                }
+                                pizza_size.clearCheck();
+
+                                location.setSelection(0);
+                                cutlery_switch.setChecked(false);
+
+                                Toast.makeText(this, "Payment received!!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Your pizza will be delivered in 30 minutes.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "\"Do rate our pizza,\nIt will help us improve our service\"", Toast.LENGTH_SHORT).show();
                             })
                             .show();
-
                 })
-                .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+                .setNegativeButton("No", (dialog, id) ->{
+                    check1.setChecked(false);
+                    check2.setChecked(false);
+                    check3.setChecked(false);
+                    check4.setChecked(false);
 
+                    top1.setChecked(false);
+                    top2.setChecked(false);
+                    top3.setChecked(false);
+                    top4.setChecked(false);
+
+                    pizza_size.clearCheck();
+
+                    location.setSelection(0);
+                    cutlery_switch.setChecked(false);
+
+                    Toast.makeText(this, "Order cancelled!!!", Toast.LENGTH_SHORT).show();
+
+                    dialog.cancel();
+                });
+
+        //show confirm dialog
         AlertDialog alert = builder.create();
         alert.setTitle("Confirm your order");
         alert.show();
+
     }
 
 }
