@@ -19,17 +19,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    private Switch veg_switch, cutlary_switch;
+    private Switch veg_switch, cutlery_switch;
     private CheckBox check1, check2, check3, check4, top1, top2, top3, top4;
     private RadioGroup pizza_size;
     private SeekBar spice_level;
@@ -39,26 +36,34 @@ public class MainActivity extends AppCompatActivity {
     private Spinner location;
     private String size = "";
     private ArrayList<String> toppings = new ArrayList<>();
-    private ArrayList<String> spiceLevel = new ArrayList<>();
+    private String spiceLevel = "";
     private ArrayList<String> selectedPizzas = new ArrayList<>();
     private String selectedLocation = "";
     private AlertDialog.Builder builder;
+    private HashMap<String, Integer> name_quantity_pair = new HashMap<>();
+    TextView pizza1;
+    TextView pizza2;
+    TextView pizza3;
+    TextView pizza4;
+    int[] price = {300, 200, 300, 100};
+    Button rate;
+
+    // Initialize quantity globally
+    private int quantity1 = 0;
+    private int quantity2 = 0;
+    private int quantity3 = 0;
+    private int quantity4 = 0;
+    private int totalPrice = 0;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        //initiating all the views
+        // Initializing views
         veg_switch = findViewById(R.id.veg_only);
-        cutlary_switch = findViewById(R.id.cutlery);
+        cutlery_switch = findViewById(R.id.cutlery);
 
         check1 = findViewById(R.id.checkbox1);
         check2 = findViewById(R.id.checkbox2);
@@ -98,191 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         location = findViewById(R.id.location_spinner);
 
-        TextView pizza1 = findViewById(R.id.pizza1_name);
-        TextView pizza2 = findViewById(R.id.pizza2_name);
-        TextView pizza3 = findViewById(R.id.pizza3_name);
-        TextView pizza4 = findViewById(R.id.pizza4_name);
+        pizza1 = findViewById(R.id.pizza1_name);
+        pizza2 = findViewById(R.id.pizza2_name);
+        pizza3 = findViewById(R.id.pizza3_name);
+        pizza4 = findViewById(R.id.pizza4_name);
 
-        //implementing codes
-        veg_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if(isChecked) {
-                    Toast.makeText(MainActivity.this, "Only Veg pizzas enabled",
-                            Toast.LENGTH_SHORT).show();
-
-                    non_veg_layout1.setVisibility(View.GONE);
-                    non_veg_layout2.setVisibility(View.GONE);
-                }
-                else{
-                    non_veg_layout1.setVisibility(View.VISIBLE);
-                    non_veg_layout2.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-
-        if(check1.isChecked()){
-            selectedPizzas.add(pizza1.getText().toString());
-        }
-        else if(check2.isChecked()){
-            selectedPizzas.add(pizza2.getText().toString());
-        }
-        else if(check3.isChecked()){
-            selectedPizzas.add(pizza3.getText().toString());
-        }
-        else if(check4.isChecked()){
-            selectedPizzas.add(pizza4.getText().toString());
-        }
-
-        int[] quantity1 = {0};
-        int[] quantity2 = {0};
-        int[] quantity3 = {0};
-        int[] quantity4 = {0};
-
-        p1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(true, check1, tv1, quantity1);
-            }
-        });
-
-        m1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(false, check1, tv1, quantity1);
-            }
-        });
-
-        p2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(true, check2, tv2, quantity2);
-            }
-        });
-
-        m2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(false, check2, tv2, quantity2);
-            }
-        });
-
-        p3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(true, check3, tv3, quantity3);
-            }
-        });
-
-        m3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(false, check3, tv3, quantity3);
-            }
-        });
-
-        p4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(true, check4, tv4, quantity4);
-            }
-        });
-
-        m4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(false, check4, tv4, quantity4);
-            }
-        });
-
-
-        if(top1.isChecked()) {
-            toppings.add(top1.getText().toString());
-        }
-        else {
-            toppings.remove(top1.getText().toString());
-        }
-        if(top2.isChecked()) {
-            toppings.add(top2.getText().toString());
-        }
-        else {
-            toppings.remove(top2.getText().toString());
-        }
-        if(top3.isChecked()) {
-            toppings.add(top3.getText().toString());
-        }
-        else {
-            toppings.remove(top3.getText().toString());
-        }
-        if(top4.isChecked()) {
-            toppings.add(top4.getText().toString());
-        }
-        else {
-            toppings.remove(top4.getText().toString());
-        }
-
-        pizza_size.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton selectedRadioButton = findViewById(checkedId);
-
-                size = selectedRadioButton.getText().toString();
-
-                Toast.makeText(getApplicationContext(), "Selected Size: " + size,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        spice_level.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress == spice_level.getMax()) {
-                    spiceLevel.add("Super super spicy");
-                    Toast.makeText(MainActivity.this, "O Maa go\nato besi JHALLL :'''",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(progress >= spice_level.getMax()/2 || progress <= (spice_level.getMax()/4) * 3) {
-                    spiceLevel.add("Hot");
-                    Toast.makeText(MainActivity.this, "Mutamuti JHAL",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(progress >= (spice_level.getMax()/4) * 3 || progress == spice_level.getMax()) {
-                    spiceLevel.add("Super spicy");
-                    Toast.makeText(MainActivity.this, "valoi JHALL",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(progress >= spice_level.getMax()/4 || progress <= (spice_level.getMax()/2)) {
-                    spiceLevel.add("Medium");
-                    Toast.makeText(MainActivity.this, "ato JHAL na ",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(progress >= 0 || progress <= spice_level.getMax()/4) {
-                    spiceLevel.add("Plain");
-                    Toast.makeText(MainActivity.this, "JHAL nai oi",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        cutlary_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    Toast.makeText(MainActivity.this, "Cutlary added :)", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        builder = new AlertDialog.Builder(this);
 
         coupon_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,93 +118,158 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cutlery_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    Toast.makeText(MainActivity.this, "Cutlery added :)", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Veg Switch functionality
+        veg_switch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                Toast.makeText(MainActivity.this, "Only Veg pizzas enabled", Toast.LENGTH_SHORT).show();
+                non_veg_layout1.setVisibility(View.GONE);
+                non_veg_layout2.setVisibility(View.GONE);
+            } else {
+                non_veg_layout1.setVisibility(View.VISIBLE);
+                non_veg_layout2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        // Quantity handling for pizza1
+        p1.setOnClickListener(v -> updateQuantity(pizza1.getText().toString(), check1.isChecked(), tv1, 1));
+        m1.setOnClickListener(v -> decreaseQuantity(pizza1.getText().toString(), check1.isChecked(), tv1, 1));
+
+        // Quantity handling for pizza2
+        p2.setOnClickListener(v -> updateQuantity(pizza2.getText().toString(), check2.isChecked(), tv2, 2));
+        m2.setOnClickListener(v -> decreaseQuantity(pizza2.getText().toString(), check2.isChecked(), tv2, 2));
+
+        // Quantity handling for pizza3
+        p3.setOnClickListener(v -> updateQuantity(pizza3.getText().toString(), check3.isChecked(), tv3, 3));
+        m3.setOnClickListener(v -> decreaseQuantity(pizza3.getText().toString(), check3.isChecked(), tv3, 3));
+
+        // Quantity handling for pizza4
+        p4.setOnClickListener(v -> updateQuantity(pizza4.getText().toString(), check4.isChecked(), tv4, 4));
+        m4.setOnClickListener(v -> decreaseQuantity(pizza4.getText().toString(), check4.isChecked(), tv4, 4));
+
+        // Pizza size selection
+        pizza_size.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selectedRadioButton = findViewById(checkedId);
+            size = selectedRadioButton.getText().toString();
+            Toast.makeText(getApplicationContext(), "Selected Size: " + size, Toast.LENGTH_SHORT).show();
+        });
+
+        // Seek bar for spice level
+        spice_level.setMax(5);
+        spice_level.setProgress(1);
+        spice_level.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                String[] spiceLevels = {"Plain", "Medium", "Hot", "Super spicy", "Super super spicy"};
+                spiceLevel = spiceLevels[progress];
+                Toast.makeText(MainActivity.this, "Spice level  " + spiceLevel, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        // Location Spinner setup
         String[] locations = {"-none-", "Modina Market", "Pathantula", "Sust Gate", "Subid Bazar"};
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-
         location.setAdapter(adapter);
 
         location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLocation = adapter.getItem(position).toString();
-
-                if(!selectedLocation.equals("-none-")) {
-                    Toast.makeText(MainActivity.this, "Selected location " + selectedLocation,
-                            Toast.LENGTH_SHORT).show();
+                selectedLocation = adapter.getItem(position);
+                if (!selectedLocation.equals("-none-")) {
+                    Toast.makeText(MainActivity.this, "Selected location " + selectedLocation, Toast.LENGTH_SHORT).show();
                 }
-
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        Button rate = findViewById(R.id.btn_rate);
+        // Confirm order button
+        confirm_order.setOnClickListener(v -> confirmOrder());
 
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RatePizza.class);
-                startActivity(intent);
+        // Rate button
+        rate = findViewById(R.id.btn_rate);
+        rate.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RatePizza.class)));
+    }
+
+    private void updateQuantity(String name, boolean pizza_checking, TextView tv, int pizzaNumber) {
+        if (pizza_checking) {
+            int quantity = getQuantityByNumber(pizzaNumber);
+            quantity++;
+            tv.setText(String.valueOf(quantity));
+            name_quantity_pair.put(name, quantity);
+        } else {
+            Toast.makeText(this, "Check desired pizza first", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void decreaseQuantity(String name, boolean pizza_checking, TextView tv, int pizzaNumber) {
+        if (pizza_checking) {
+            int quantity = getQuantityByNumber(pizzaNumber);
+            if (quantity > 0) {
+                quantity--;
+                tv.setText(String.valueOf(quantity));
+                name_quantity_pair.put(name, quantity);
             }
-        });
+        } else {
+            Toast.makeText(this, "Check desired pizza first", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        final int[] totalprice = {0};
+    private int getQuantityByNumber(int pizzaNumber) {
+        switch (pizzaNumber) {
+            case 1:
+                return quantity1++;
+            case 2:
+                return quantity2++;
+            case 3:
+                return quantity3++;
+            case 4:
+                return quantity4++;
+            default:
+                return 0;
+        }
+    }
 
-        confirm_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void confirmOrder() {
+        int totalPrice = 0;
 
-                if(quantity1[0]==0 && quantity2[0]==0 && quantity3[0]==0 && quantity4[0]==0) {
-                    Toast.makeText(MainActivity.this, "Please add quantity",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(selectedLocation.equals("-none-") || selectedLocation.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please select location",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(size.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please select size",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(toppings.get(0).isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please select toppings",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(spiceLevel.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "You didnot specify spice level",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else if(selectedPizzas.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Pizza not selected",
-                            Toast.LENGTH_SHORT).show();
-                }
-//                else if(!selectedPizzas.isEmpty()) {
-//                    if(selectedPizzas.get(0).equals(pizza1.getText().toString())){
-//                        totalprice[0] = 300*quantity1[0];
-//                    }
-//                    else if(selectedPizzas.get(0).equals(pizza2.getText().toString())){
-//                        totalprice[0] = 200*quantity2[0];
-//                    }
-//                    else if(selectedPizzas.get(0).equals(pizza3.getText().toString())){
-//                        totalprice[0] = 300*quantity3[0];
-//                    }
-//                    else if(selectedPizzas.get(0).equals(pizza4.getText().toString())){
-//                        totalprice[0] = 100*quantity4[0];
-//                    }
-//                }
-                else {
-                    builder.setTitle("Confirm order")
-                            .setMessage("Oredr summary:\nSelected pizza:" + selectedPizzas.get(0) +
-                                    "\nSize:" + size + "\nToppings:" + toppings.get(0) + "\nSpice level:" + spiceLevel +
-                                    "\nDelivery location:" + selectedLocation + "\n\tTotal price:" )
+        // Calculate the total price based on the quantity of each pizza
+        if (check1.isChecked()) {
+            totalPrice += quantity1 * price[0]; // price[0] corresponds to pizza1
+        }
+        if (check2.isChecked()) {
+            totalPrice += quantity2 * price[1]; // price[1] corresponds to pizza2
+        }
+        if (check3.isChecked()) {
+            totalPrice += quantity3 * price[2]; // price[2] corresponds to pizza3
+        }
+        if (check4.isChecked()) {
+            totalPrice += quantity4 * price[3]; // price[3] corresponds to pizza4
+        }
 
-                            .setCancelable(false)
+        final int total_price = totalPrice;
+
+        // Format and show the final price in the confirmation dialog
+        builder.setMessage("Your total order price is " + totalPrice + " TK.\nAre you sure you want to confirm your order?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    builder.setTitle("Payment")
+                            .setMessage("Send " + total_price + " TK to Pizza Hut").setCancelable(false)
                             .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -395,26 +286,17 @@ public class MainActivity extends AppCompatActivity {
                                     top4.setChecked(false);
 
                                     pizza_size.clearCheck();
+
                                 }
-                            }).show();
-                }
-            }
-        });
+                            })
+                            .show();
+
+                })
+                .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+
+        AlertDialog alert = builder.create();
+        alert.setTitle("Confirm your order");
+        alert.show();
     }
 
-    private void updateQuantity(boolean isIncrement, CheckBox checkBox, TextView textView, int[] quantity) {
-        if (checkBox.isChecked()) {
-            if (isIncrement) {
-                quantity[0]++;
-            } else {
-                if (quantity[0] > 0) {
-                    quantity[0]--;
-                }
-            }
-            textView.setText(String.valueOf(quantity[0]));
-        } else {
-            Toast.makeText(MainActivity.this, "Please select pizza first",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
 }
